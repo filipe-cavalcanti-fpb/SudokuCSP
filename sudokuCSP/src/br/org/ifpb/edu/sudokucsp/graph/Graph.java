@@ -20,8 +20,7 @@ public class Graph {
     public static final int MULT_SECOND_DIAGONAL = 8;
     private static final int LINK = 10;
     public static final int SUB_DIAGONAL_LIMIT = 20;
-    public static final int SUB_DIAGONAL[][] = {{0,20},{3,23},{6,26}, {27,47}, 
-        {30,50}, {33,53}, {54,74},{57,77},{60,80}};
+    public static final int SUB_DIAGONAL[] = {0,3,6,27,30,33,54,57,60};
     private List<List<Byte>> adjacenceMatrix;
     
     public Graph(){
@@ -70,5 +69,13 @@ public class Graph {
                 }
             }
         return result;
+    }
+    
+    public void setCompletEdge(List<Integer> nodes){
+        for(int i = 0; i < nodes.size();i++){
+            for(int j = i+1; j < nodes.size();j++){
+                this.adjacenceMatrix.get(nodes.get(i)).set(nodes.get(j),(byte)Graph.LINK);
+            }
+        }
     }
 }

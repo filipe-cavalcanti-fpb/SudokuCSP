@@ -5,6 +5,8 @@
  */
 package br.org.ifpb.edu.sudokucsp.graph.builder;
 import br.org.ifpb.edu.sudokucsp.graph.Graph;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author assert
@@ -104,7 +106,7 @@ public class GraphConcreteBuilder implements GraphBuilder{
         for(int i = 0; i < Graph.SIZE;i++){
             //System.err.println(i+", "+(i%Graph.SQRT_81));
         }
-        this.constructEdgeSubMatrixNode(3);
+        this.constructEdgeSubMatrixNode(30);
     }
     
     /**
@@ -113,26 +115,15 @@ public class GraphConcreteBuilder implements GraphBuilder{
      * @param node 
      */
     private void constructEdgeSubMatrixNode(int node){
-        /*for(int j = node + 1; j <= node+Graph.SUB_DIAGONAL_LIMIT;j++){
-            if(j % Graph.SQRT_81 < Graph.SQRT_9){
-                this.graphReferenceProduct.setEdge(node, j);
+        List<Integer> result = new ArrayList<>();
+        for(int subDiagonalItem:Graph.SUB_DIAGONAL){
+            for(int i = 0; i < Graph.SQRT_9; i++){
+                for(int j = subDiagonalItem; j < Graph.SQRT_9+subDiagonalItem;j++){
+                    result.add(j+Graph.SQRT_81*i);
+                }
             }
-            else if(j + 1 == Graph.SIZE){
-                break;
-            }
-        }*/
-        int limitSup = 0;
-        for(int[] tuple:Graph.SUB_DIAGONAL){
-            if(node >= tuple[0]){
-                limitSup = tuple[1];
-                break;
-            }
-        }
-        System.out.println(limitSup);
-        for(int i = 0; i < Graph.SQRT_9;i++){
-            for(int j = node; j < node + Graph.SQRT_9;j++){
-                //System.err.println(j);
-            }
+            this.graphReferenceProduct.setCompletEdge(result);
+            result = new ArrayList<>();
         }
     }
 }

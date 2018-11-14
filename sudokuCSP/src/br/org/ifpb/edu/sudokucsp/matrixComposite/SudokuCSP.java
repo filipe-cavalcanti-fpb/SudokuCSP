@@ -16,12 +16,12 @@ public class SudokuCSP {
      */
     public static void main(String[] args) {
         GraphConcreteBuilder d = new GraphConcreteBuilder();
-        //d.constructEdgeColumn();
-        //d.constructEdgeLine();
+        d.constructEdgeColumn();
+        d.constructEdgeLine();
         //d.constructEdgePrimaryDiagonal();
         //d.constructEdgeSecondDiagonal();
         d.constructEdgeSubMatrix();
-        //System.err.println(d.getGraphReferenceProduct().getAdjacence(43));
+        System.err.println(d.getGraphReferenceProduct().getAdjacence(43));
         //System.err.println(d);
     }
     
