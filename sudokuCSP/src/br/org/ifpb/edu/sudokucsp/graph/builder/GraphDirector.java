@@ -23,5 +23,6 @@ public class GraphDirector {
         this.graphBuilderReference.constructEdgeLine();
         this.graphBuilderReference.constructEdgePrimaryDiagonal();
         this.graphBuilderReference.constructEdgeSecondDiagonal();
+        this.graphBuilderReference.constructEdgeSubMatrix();
     }
 }
