@@ -78,4 +78,10 @@ public class Graph {
             }
         }
     }
+    public List<Integer> converter(int node){
+        List<Integer> coordenate = new ArrayList<>();
+        coordenate.add(node/9);
+        coordenate.add(node%9);
+        return coordenate;
+    }
 }

@@ -21,6 +21,7 @@ public class SudokuCSP {
         new GraphDirector(g).builder();
         Graph d = g.getGraphReferenceProduct();
         System.err.println(d.getAdjacence(40));
+        System.err.println(d.converter(66));
         //System.err.println(d);
     }
     
