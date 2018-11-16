@@ -7,6 +7,7 @@ package br.org.ifpb.edu.sudokucsp.matrixComposite;
 import br.org.ifpb.edu.sudokucsp.graph.Graph;
 import br.org.ifpb.edu.sudokucsp.graph.builder.GraphConcreteBuilder;
 import br.org.ifpb.edu.sudokucsp.graph.builder.GraphDirector;
+import br.org.ifpb.edu.sudokucsp.CSP.domainFlyweight.*;
 /**
  *
  * @author assert
@@ -17,12 +18,13 @@ public class SudokuCSP {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GraphConcreteBuilder g = new GraphConcreteBuilder();
-        new GraphDirector(g).builder();
-        Graph d = g.getGraphReferenceProduct();
-        System.err.println(d.getAdjacence(40));
-        System.err.println(d.converter(66));
-        //System.err.println(d);
+        DomainFlyweight d1,d2,d3;
+        DomainFlyweightFactory df = new DomainFlyweightFactory();
+        d1 = df.getDomainColumnFlyweight(5);
+        d2 = df.getDomainColumnFlyweight(14);
+        d3 = df.getDomainColumnFlyweight(23);
+        d1.removeFromDomain(1);
+        System.err.println(d3);
     }
     
 }

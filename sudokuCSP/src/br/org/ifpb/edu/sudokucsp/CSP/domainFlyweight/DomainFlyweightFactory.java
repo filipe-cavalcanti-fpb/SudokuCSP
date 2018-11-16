@@ -14,27 +14,31 @@ import br.org.ifpb.edu.sudokucsp.graph.Graph;
  * @author assert
  */
 public class DomainFlyweightFactory {
-    public List<DomainFlyweight> poolFlyweight;
+    private List<DomainFlyweight> poolFlyweightsLine;
+    private List<DomainFlyweight> poolFlyweightsColumn;
+    private DomainFlyweight poolFlyweightsPrimaryDiagonal;
+    private DomainFlyweight poolFlyweightsSecondDiagonal;
     
     public DomainFlyweightFactory(){
-        this.poolFlyweight = new ArrayList<>();
+        this.poolFlyweightsLine = new ArrayList<>();
+        this.poolFlyweightsColumn = new ArrayList<>();
+        this.poolFlyweightsPrimaryDiagonal = new DomainConcreteFlyweight();
+        this.poolFlyweightsSecondDiagonal = new DomainConcreteFlyweight();
+        for(int index = 0; index < 2*Graph.SQRT_81+2;index++){
+            this.poolFlyweightsLine.add(new DomainConcreteFlyweight());
+            this.poolFlyweightsColumn.add(new DomainConcreteFlyweight());
+        }
     }
     
     public DomainFlyweight getDomainLineFlyweight(int node){
-        try {
-            return this.poolFlyweight.get(node%Graph.SQRT_81);
-        } catch (Exception e) {
-            this.poolFlyweight.add(new DomainConcreteFlyweight());
-            return this.poolFlyweight.get(node%Graph.SQRT_81);
-        }
+        return this.poolFlyweightsLine.get((int)node/Graph.SQRT_81);
     }
     
     public DomainFlyweight getDomainColumnFlyweight(int node){
-        try {
-            return this.poolFlyweight.get((int)node/Graph.SQRT_81);
-        } catch (Exception e) {
-            this.poolFlyweight.add(new DomainConcreteFlyweight());
-            return this.poolFlyweight.get((int)node/Graph.SQRT_81);
-        }
+        return this.poolFlyweightsLine.get(node%Graph.SQRT_81);
+    }
+    
+    public DomainFlyweight getDomainPrimaryDiagonalFlyweight(int node){
+        return new DomainConcreteFlyweight();
     }
 }

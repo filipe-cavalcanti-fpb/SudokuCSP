@@ -25,12 +25,15 @@ public class DomainConcreteFlyweight implements DomainFlyweight{
 
     @Override
     public void removeFromDomain(int value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.poolValues.remove(value);
     }
 
     @Override
     public DomainFlyweight getConcretFlyweight() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+    @Override
+    public String toString(){
+        return this.poolValues.toString();
+    }
 }

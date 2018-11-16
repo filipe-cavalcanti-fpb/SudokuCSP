@@ -5,13 +5,14 @@
  */
 package br.org.ifpb.edu.sudokucsp.CSP.constraint;
 
+import br.org.ifpb.edu.sudokucsp.CSP.domainFlyweight.DomainFlyweight;
 /**
  *
  * @author assert
  */
 public class Constraint {
     
-    public boolean lineConstraintSatisfation(int node, Domain d){
+    public boolean lineConstraintSatisfation(int node, DomainFlyweight d){
         return true;
     }
     
