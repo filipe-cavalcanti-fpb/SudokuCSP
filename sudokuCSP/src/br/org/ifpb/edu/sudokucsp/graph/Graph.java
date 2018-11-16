@@ -20,7 +20,7 @@ public class Graph {
     public static final int MULT_SECOND_DIAGONAL = 8;
     private static final int LINK = 10;
     public static final int SUB_DIAGONAL_LIMIT = 20;
-    public static final int SUB_DIAGONAL[] = {0,3,6,27,30,33,54,57,60};
+    public static final int[] SUP_DIAGONAL = {0,3,6,27,30,33,54,57,60};
     private List<List<Byte>> adjacenceMatrix;
     
     public Graph(){
@@ -28,11 +28,13 @@ public class Graph {
         this.constructLine();
         this.constructColunm();
     }
+    
     private void constructLine(){
         for(int i =0;i < Graph.SIZE; i++){
             this.adjacenceMatrix.add(new ArrayList<>());
         }
     }
+    
     private void constructColunm(){
         for(int i = 0;i < Graph.SIZE; i++){
             for(int j = 0; j < Graph.SIZE; j++){
@@ -40,6 +42,7 @@ public class Graph {
             }
         }
     }
+    
     public void setEdge(int lineIndex, int columnIndex){
         this.adjacenceMatrix.get(lineIndex).set(columnIndex, (byte)Graph.LINK);
     }
@@ -78,10 +81,26 @@ public class Graph {
             }
         }
     }
-    public List<Integer> converter(int node){
+    
+    public static List<Integer> converter(int node){
         List<Integer> coordenate = new ArrayList<>();
         coordenate.add(node/9);
         coordenate.add(node%9);
         return coordenate;
+    }
+    
+    public static int getIndexSubMatrix(int node){
+        int subMatrixIndex = 0;
+        List<Integer> nodeIndex = Graph.converter(node);
+        List<Integer> pointReference;
+        for(int nodeSubDiagonal:Graph.SUP_DIAGONAL){
+            pointReference = Graph.converter(nodeSubDiagonal);
+            if((nodeIndex.get(0)>= pointReference.get(0) && nodeIndex.get(0) <= pointReference.get(0)+2) && 
+                    (nodeIndex.get(1) >= pointReference.get(1) && nodeIndex.get(1) <= pointReference.get(1)+2)){
+                return subMatrixIndex;
+            }
+            subMatrixIndex++;
+        }
+        return subMatrixIndex;
     }
 }

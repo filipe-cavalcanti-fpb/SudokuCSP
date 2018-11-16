@@ -19,12 +19,7 @@ public class SudokuCSP {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        List<DomainFlyweight> d1,d2,d3;
-        DomainFlyweightFactory df = new DomainFlyweightFactory();
-        d1 = df.getAllDomains(10);
-        d2 = df.getAllDomains(14);
-        d3 = df.getAllDomains(24);
-        System.err.println(d1);
+        System.out.println(Graph.getIndexSubMatrix(0));
     }
     
 }

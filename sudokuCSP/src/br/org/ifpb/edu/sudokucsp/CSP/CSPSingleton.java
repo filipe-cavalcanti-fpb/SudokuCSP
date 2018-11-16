@@ -5,6 +5,7 @@
  */
 package br.org.ifpb.edu.sudokucsp.CSP;
 
+import br.org.ifpb.edu.sudokucsp.CSP.variable.Variable;
 import java.util.List;
 import br.org.ifpb.edu.sudokucsp.graph.Graph;
 import br.org.ifpb.edu.sudokucsp.graph.builder.GraphBuilder;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 public class CSPSingleton {
     private static CSPSingleton instance;
-    private List<Integer> x;
+    private List<Variable> variables;
     private List<Integer> d;
     private Graph graphReference;
     private GraphBuilder graphBuilderReference;

@@ -116,7 +116,7 @@ public class GraphConcreteBuilder implements GraphBuilder{
      */
     private void constructEdgeSubMatrixNode(int node){
         List<Integer> result = new ArrayList<>();
-        for(int subDiagonalItem:Graph.SUB_DIAGONAL){
+        for(int subDiagonalItem:Graph.SUP_DIAGONAL){
             for(int i = 0; i < Graph.SQRT_9; i++){
                 for(int j = subDiagonalItem; j < Graph.SQRT_9+subDiagonalItem;j++){
                     result.add(j+Graph.SQRT_81*i);

@@ -16,24 +16,34 @@ import br.org.ifpb.edu.sudokucsp.graph.Graph;
 public class DomainFlyweightFactory {
     private List<DomainFlyweight> poolFlyweightsLine;
     private List<DomainFlyweight> poolFlyweightsColumn;
+    private List<DomainFlyweight> poolFlyweightsSubMatrix;
     private DomainFlyweight poolFlyweightsPrimaryDiagonal;
     private DomainFlyweight poolFlyweightsSecondDiagonal;
     
     public DomainFlyweightFactory(){
         this.poolFlyweightsLine = new ArrayList<>();
         this.poolFlyweightsColumn = new ArrayList<>();
+        this.poolFlyweightsSubMatrix = new ArrayList<>();
         this.poolFlyweightsPrimaryDiagonal = new DomainConcreteFlyweight();
         this.poolFlyweightsSecondDiagonal = new DomainConcreteFlyweight();
         for(int index = 0; index < 2*Graph.SQRT_81+2;index++){
             this.poolFlyweightsLine.add(new DomainConcreteFlyweight());
             this.poolFlyweightsColumn.add(new DomainConcreteFlyweight());
+            this.poolFlyweightsSubMatrix.add(new DomainConcreteFlyweight());
         }
     }
     
+    /**
+     * getAllDomains retorna uma lista com todos os dominios da variavel passada
+     * por parametro (node), linha, coluna, diagonal primaria, diagonal secundaria
+     * @param node variavel que deseja seus dominios
+     * @return uma lista com os dominios da variavel node
+     */
     public List<DomainFlyweight> getAllDomains(int node){
         List<DomainFlyweight> domains = new ArrayList<>();
         domains.add(this.getDomainLineFlyweight(node));
         domains.add(this.getDomainColumnFlyweight(node));
+        domains.add(this.getDomainSubMatrix(node));
         try { 
             domains.add(this.getDomainPrimaryDiagonalFlyweight(node));
         } catch (NullPointerException e) {
@@ -47,6 +57,11 @@ public class DomainFlyweightFactory {
         return domains;
     }
     
+    /**
+     * retorna o dominio compartilhado dos elementos na mesma linha da matriz
+     * @param node nó referência
+     * @return retorna uma referẽncia de um dominio 
+     */
     private DomainFlyweight getDomainLineFlyweight(int node){
         return this.poolFlyweightsLine.get((int)node/Graph.SQRT_81);
     }
@@ -71,5 +86,9 @@ public class DomainFlyweightFactory {
         else{
             throw new NullPointerException("Não pertence a diagonal secundaria");
         }
+    }
+    
+    private DomainFlyweight getDomainSubMatrix(int node){
+        return this.poolFlyweightsSubMatrix.get(Graph.getIndexSubMatrix(node));
     }
 }
