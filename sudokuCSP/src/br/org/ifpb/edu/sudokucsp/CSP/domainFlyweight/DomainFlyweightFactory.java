@@ -5,6 +5,7 @@
  */
 package br.org.ifpb.edu.sudokucsp.CSP.domainFlyweight;
 
+import br.org.ifpb.edu.sudokucsp.CSP.variable.Variable;
 import java.util.ArrayList;
 import java.util.List;
 import br.org.ifpb.edu.sudokucsp.graph.Graph;
@@ -91,4 +92,17 @@ public class DomainFlyweightFactory {
     private DomainFlyweight getDomainSubMatrix(int node){
         return this.poolFlyweightsSubMatrix.get(Graph.getIndexSubMatrix(node));
     }
+    
+    public DomainFlyweight getIntersectionDomain(Variable varNode){
+        List<Integer> intersect = new ArrayList<>();
+        for(DomainFlyweight domainItem:varNode.getDomains()){
+            for(Integer availableValue:domainItem.getDomainFlyweight()){
+                if(!intersect.contains(availableValue)){
+                    intersect.add(availableValue);
+                }
+            }
+        }
+        return new DomainConcreteFlyweight(intersect);
+    }
+    
 }

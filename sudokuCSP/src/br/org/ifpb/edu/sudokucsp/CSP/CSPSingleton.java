@@ -6,12 +6,14 @@
 package br.org.ifpb.edu.sudokucsp.CSP;
 
 import br.org.ifpb.edu.sudokucsp.CSP.variable.Variable;
-import java.util.List;
+import br.org.ifpb.edu.sudokucsp.CSP.variable.factoryMethod.VariableConcreteCreator;
+import br.org.ifpb.edu.sudokucsp.CSP.variable.factoryMethod.VariableCreator;
 import br.org.ifpb.edu.sudokucsp.graph.Graph;
 import br.org.ifpb.edu.sudokucsp.graph.builder.GraphBuilder;
 import br.org.ifpb.edu.sudokucsp.graph.builder.GraphDirector;
 import br.org.ifpb.edu.sudokucsp.graph.builder.GraphConcreteBuilder;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author assert
@@ -19,24 +21,19 @@ import java.util.ArrayList;
 public class CSPSingleton {
     private static CSPSingleton instance;
     private List<Variable> variables;
-    private List<Integer> d;
     private Graph graphReference;
     private GraphBuilder graphBuilderReference;
     private GraphDirector graphDirectorReference;
+    private VariableCreator variableCriatorReference;
     
     private CSPSingleton(){
-        this.x = new ArrayList<>();
-        this.d = new ArrayList<>();
+        this.variables = new ArrayList<>();
         this.graphBuilderReference = new GraphConcreteBuilder();
         this.graphDirectorReference = new GraphDirector(graphBuilderReference);
         this.graphDirectorReference.builder();
+        this.variableCriatorReference = new VariableConcreteCreator();
+        this.variables = this.variableCriatorReference.getProduct();
         this.graphReference =((GraphConcreteBuilder)this.graphBuilderReference).getGraphReferenceProduct();
-        for(int variable = 0; variable < Graph.SIZE; variable++){
-            this.x.add(variable);
-        }
-        for(int values = 0; values < Graph.SQRT_81; values++){
-            this.d.add(values);
-        }
     }
     
     public static CSPSingleton getInstance(){

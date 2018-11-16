@@ -33,6 +33,9 @@ public abstract class Variable {
     public void setDomains(List<DomainFlyweight> domains) {
         this.domains = domains;
     }
-    
+
+    public List<DomainFlyweight> getDomains() {
+        return domains;
+    }
     
 }

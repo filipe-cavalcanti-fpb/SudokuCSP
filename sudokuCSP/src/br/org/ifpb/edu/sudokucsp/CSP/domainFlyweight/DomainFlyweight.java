@@ -5,11 +5,15 @@
  */
 package br.org.ifpb.edu.sudokucsp.CSP.domainFlyweight;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  *
  * @author assert
  */
 public interface DomainFlyweight {
     public void removeFromDomain(int value);
-    public DomainFlyweight getConcretFlyweight();
+    public List<Integer> getDomainFlyweight();
+    public void set(Collection<Integer> values);
 }

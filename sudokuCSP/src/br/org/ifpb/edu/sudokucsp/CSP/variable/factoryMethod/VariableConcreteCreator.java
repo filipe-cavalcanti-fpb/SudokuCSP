@@ -38,6 +38,7 @@ public class VariableConcreteCreator  extends VariableCreator{
             node++;
         }
     }
+    
     @Override
     public List<Variable> getProduct(){
         return this.variabablesReference;

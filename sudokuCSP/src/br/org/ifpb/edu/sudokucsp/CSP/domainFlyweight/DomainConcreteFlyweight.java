@@ -7,6 +7,7 @@ package br.org.ifpb.edu.sudokucsp.CSP.domainFlyweight;
 
 import br.org.ifpb.edu.sudokucsp.graph.Graph;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,6 +23,10 @@ public class DomainConcreteFlyweight implements DomainFlyweight{
             this.poolValues.add(value);
         }
     }
+    
+    public DomainConcreteFlyweight(Collection<Integer> intersect){
+        this.poolValues = new ArrayList<>(intersect);
+    }
 
     @Override
     public void removeFromDomain(int value) {
@@ -29,11 +34,18 @@ public class DomainConcreteFlyweight implements DomainFlyweight{
     }
 
     @Override
-    public DomainFlyweight getConcretFlyweight() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Integer> getDomainFlyweight() {
+        return this.poolValues;
     }
+    
     @Override
     public String toString(){
         return this.poolValues.toString();
     }
+
+    @Override
+    public void set(Collection<Integer> values) {
+        this.poolValues = new ArrayList<>(values);
+    }
+    
 }
