@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.org.ifpb.edu.sudokucsp.constraint;
+package br.org.ifpb.edu.sudokucsp.CSP.constraint;
 
 /**
  *
  * @author assert
  */
 public class Constraint {
+    
+    public boolean lineConstraintSatisfation(int node, Domain d){
+        return true;
+    }
     
 }
