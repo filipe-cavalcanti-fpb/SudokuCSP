@@ -71,6 +71,12 @@ public class DomainFlyweightFactory {
         return this.poolFlyweightsLine.get(node%Graph.SQRT_81);
     }
     
+    /**
+     * 
+     * @param node
+     * @return
+     * @throws NullPointerException 
+     */
     private DomainFlyweight getDomainPrimaryDiagonalFlyweight(int node) throws NullPointerException{
         if(node%Graph.MULT_PRIMARY_DIAGONAL==0){
             return this.poolFlyweightsPrimaryDiagonal;
@@ -80,6 +86,12 @@ public class DomainFlyweightFactory {
         }
     }
     
+    /**
+     * 
+     * @param node
+     * @return
+     * @throws NullPointerException 
+     */
     private DomainFlyweight getDomainSecondDiagonalFlyweight(int node)throws NullPointerException{
         if(node%(Graph.MULT_SECOND_DIAGONAL) == 0){
             return this.poolFlyweightsSecondDiagonal;
@@ -93,16 +105,18 @@ public class DomainFlyweightFactory {
         return this.poolFlyweightsSubMatrix.get(Graph.getIndexSubMatrix(node));
     }
     
+    /**
+     * 
+     * @param varNode
+     * @return 
+     */
     public DomainFlyweight getIntersectionDomain(Variable varNode){
         List<Integer> intersect = new ArrayList<>();
-        for(DomainFlyweight domainItem:varNode.getDomains()){
-            for(Integer availableValue:domainItem.getDomainFlyweight()){
-                if(!intersect.contains(availableValue)){
-                    intersect.add(availableValue);
-                }
-            }
-        }
+        varNode.getDomains().forEach((domainItem) -> {
+            domainItem.getDomainFlyweight().stream().filter((availableValue) -> (!intersect.contains(availableValue))).forEachOrdered((availableValue) -> {
+                intersect.add(availableValue);
+            });
+        });
         return new DomainConcreteFlyweight(intersect);
     }
-    
 }

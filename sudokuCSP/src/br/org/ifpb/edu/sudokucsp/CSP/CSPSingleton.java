@@ -14,11 +14,13 @@ import br.org.ifpb.edu.sudokucsp.graph.builder.GraphDirector;
 import br.org.ifpb.edu.sudokucsp.graph.builder.GraphConcreteBuilder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 /**
  *
  * @author assert
  */
 public class CSPSingleton {
+    private Random generateNode;
     private static CSPSingleton instance;
     private List<Variable> variables;
     private Graph graphReference;
@@ -27,6 +29,7 @@ public class CSPSingleton {
     private VariableCreator variableCriatorReference;
     
     private CSPSingleton(){
+        this.generateNode = new Random();
         this.variables = new ArrayList<>();
         this.graphBuilderReference = new GraphConcreteBuilder();
         this.graphDirectorReference = new GraphDirector(graphBuilderReference);
@@ -41,6 +44,10 @@ public class CSPSingleton {
             CSPSingleton.instance = new CSPSingleton();
         }
         return CSPSingleton.instance;
+    }
+    
+    public void setValuesVariable(){
+        
     }
     
 }

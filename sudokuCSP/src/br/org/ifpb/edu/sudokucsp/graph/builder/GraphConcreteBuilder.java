@@ -115,15 +115,35 @@ public class GraphConcreteBuilder implements GraphBuilder{
      * @param node 
      */
     private void constructEdgeSubMatrixNode(int node){
-        List<Integer> result = new ArrayList<>();
         for(int subDiagonalItem:Graph.SUP_DIAGONAL){
-            for(int i = 0; i < Graph.SQRT_9; i++){
-                for(int j = subDiagonalItem; j < Graph.SQRT_9+subDiagonalItem;j++){
-                    result.add(j+Graph.SQRT_81*i);
+            this.graphReferenceProduct.setCompletEdge(this.getSubMatrix(subDiagonalItem));
+        }
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<List<Integer>> getSubMatrixs(){
+        List<List<Integer>> subMatrixes = new ArrayList<>();
+        for(Integer nodeIndex: Graph.SUP_DIAGONAL){
+            subMatrixes.add(this.getSubMatrix(nodeIndex));
+        }
+        return subMatrixes;
+    }
+    
+    /**
+     * 
+     * @param node
+     * @return 
+     */
+    public List<Integer> getSubMatrix(int node){
+        List<Integer> subMatrix = new ArrayList<>();
+        for(int i = 0; i < Graph.SQRT_9; i++){
+                for(int j = node; j < Graph.SQRT_9+node;j++){
+                    subMatrix.add(j+Graph.SQRT_81*i);
                 }
             }
-            this.graphReferenceProduct.setCompletEdge(result);
-            result = new ArrayList<>();
-        }
+        return subMatrix;
     }
 }
