@@ -37,5 +37,6 @@ public abstract class Variable {
     public List<DomainFlyweight> getDomains() {
         return domains;
     }
+    abstract protected DomainFlyweight getIntersect();
     
 }

@@ -104,19 +104,4 @@ public class DomainFlyweightFactory {
     private DomainFlyweight getDomainSubMatrix(int node){
         return this.poolFlyweightsSubMatrix.get(Graph.getIndexSubMatrix(node));
     }
-    
-    /**
-     * 
-     * @param varNode
-     * @return 
-     */
-    public DomainFlyweight getIntersectionDomain(Variable varNode){
-        List<Integer> intersect = new ArrayList<>();
-        varNode.getDomains().forEach((domainItem) -> {
-            domainItem.getDomainFlyweight().stream().filter((availableValue) -> (!intersect.contains(availableValue))).forEachOrdered((availableValue) -> {
-                intersect.add(availableValue);
-            });
-        });
-        return new DomainConcreteFlyweight(intersect);
-    }
 }

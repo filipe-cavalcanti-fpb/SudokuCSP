@@ -47,7 +47,9 @@ public class CSPSingleton {
     }
     
     public void setValuesVariable(){
-        
+        for(List<Integer> subMatrix: ((GraphConcreteBuilder)this.graphBuilderReference).getSubMatrixs()){
+            Integer variableIndex = subMatrix.get(this.generateNode.nextInt(subMatrix.size()));
+            this.variables.get(variableIndex).
+        }
     }
-    
 }

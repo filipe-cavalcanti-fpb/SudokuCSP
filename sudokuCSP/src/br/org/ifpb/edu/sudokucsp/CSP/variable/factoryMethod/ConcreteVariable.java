@@ -5,6 +5,8 @@
  */
 package br.org.ifpb.edu.sudokucsp.CSP.variable.factoryMethod;
 
+import br.org.ifpb.edu.sudokucsp.CSP.domainFlyweight.DomainConcreteFlyweight;
+import br.org.ifpb.edu.sudokucsp.CSP.domainFlyweight.DomainFlyweight;
 import br.org.ifpb.edu.sudokucsp.CSP.variable.Variable;
 
 /**
@@ -12,5 +14,10 @@ import br.org.ifpb.edu.sudokucsp.CSP.variable.Variable;
  * @author assert
  */
 public class ConcreteVariable extends Variable{
+    
+    @Override
+    public DomainFlyweight getIntersect() {
+        return new DomainConcreteFlyweight();
+    }
     
 }
