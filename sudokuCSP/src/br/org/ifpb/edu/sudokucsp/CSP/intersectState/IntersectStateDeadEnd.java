@@ -5,10 +5,21 @@
  */
 package br.org.ifpb.edu.sudokucsp.CSP.intersectState;
 
+import java.util.List;
+
 /**
  *
  * @author assert
  */
-public class IntersectStateDeadEnd {
+public class IntersectStateDeadEnd extends IntersectState{
+
+    public IntersectStateDeadEnd(List<Integer> valuesState, IntersectState nextState) {
+        super(valuesState, nextState);
+    }
+
+    @Override
+    IntersectState getNextState(int value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
