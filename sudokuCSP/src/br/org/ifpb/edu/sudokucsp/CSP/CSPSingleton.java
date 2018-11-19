@@ -22,7 +22,7 @@ import java.util.Random;
 public class CSPSingleton {
     private Random generateNode;
     private static CSPSingleton instance;
-    private List<Variable> variables;
+    public List<Variable> variables;
     private Graph graphReference;
     private GraphBuilder graphBuilderReference;
     private GraphDirector graphDirectorReference;
@@ -35,7 +35,8 @@ public class CSPSingleton {
         this.graphDirectorReference = new GraphDirector(graphBuilderReference);
         this.graphDirectorReference.builder();
         this.variableCriatorReference = new VariableConcreteCreator();
-        this.variables = this.variableCriatorReference.getProduct();
+        ((VariableConcreteCreator)this.variableCriatorReference).variableFactoryMethod();
+        this.variables = ((VariableConcreteCreator)this.variableCriatorReference).getProduct();
         this.graphReference =((GraphConcreteBuilder)this.graphBuilderReference).getGraphReferenceProduct();
     }
     
@@ -49,7 +50,7 @@ public class CSPSingleton {
     public void setValuesVariable(){
         for(List<Integer> subMatrix: ((GraphConcreteBuilder)this.graphBuilderReference).getSubMatrixs()){
             Integer variableIndex = subMatrix.get(this.generateNode.nextInt(subMatrix.size()));
-            this.variables.get(variableIndex).
+            //this.variables.get(variableIndex).
         }
     }
 }

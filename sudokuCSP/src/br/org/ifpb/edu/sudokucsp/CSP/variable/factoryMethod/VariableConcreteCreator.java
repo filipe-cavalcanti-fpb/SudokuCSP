@@ -10,7 +10,6 @@ import java.util.List;
 import br.org.ifpb.edu.sudokucsp.CSP.variable.Variable;
 import br.org.ifpb.edu.sudokucsp.graph.Graph;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  *
@@ -26,7 +25,7 @@ public class VariableConcreteCreator  extends VariableCreator{
     }
     
     @Override
-    void variableFactoryMethod() {
+    public void variableFactoryMethod() {
         int node = 0;
         for(int i = 0; i < Graph.SIZE; i++){
             this.variabablesReference.add(new ConcreteVariable());

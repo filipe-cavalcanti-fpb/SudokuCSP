@@ -16,7 +16,7 @@ public abstract class Variable {
     private int subMatrixIndex;
     private List<Integer> point;
     private int value;
-    private List<DomainFlyweight> domains;
+    protected List<DomainFlyweight> domains;
 
     public void setSubMatrixIndex(int subMatrixIndex) {
         this.subMatrixIndex = subMatrixIndex;
