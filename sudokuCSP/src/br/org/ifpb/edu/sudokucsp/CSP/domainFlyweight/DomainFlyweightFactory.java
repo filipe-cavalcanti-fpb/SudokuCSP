@@ -48,12 +48,10 @@ public class DomainFlyweightFactory {
         try { 
             domains.add(this.getDomainPrimaryDiagonalFlyweight(node));
         } catch (NullPointerException e) {
-            System.err.println(e);
         }
         try {
             domains.add(this.getDomainSecondDiagonalFlyweight(node));
         } catch (NullPointerException e) {
-            System.err.println(e);
         }
         return domains;
     }
@@ -82,7 +80,7 @@ public class DomainFlyweightFactory {
             return this.poolFlyweightsPrimaryDiagonal;
         }
         else{
-            throw new NullPointerException("Não pertence a diagonal");
+            throw new NullPointerException();
         }
     }
     
@@ -97,7 +95,7 @@ public class DomainFlyweightFactory {
             return this.poolFlyweightsSecondDiagonal;
         }
         else{
-            throw new NullPointerException("Não pertence a diagonal secundaria");
+            throw new NullPointerException();
         }
     }
     

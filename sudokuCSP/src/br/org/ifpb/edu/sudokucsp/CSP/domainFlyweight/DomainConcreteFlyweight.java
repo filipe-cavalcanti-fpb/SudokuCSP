@@ -29,7 +29,7 @@ public class DomainConcreteFlyweight implements DomainFlyweight{
     }
 
     @Override
-    public void removeFromDomain(int value) {
+    public void removeFromDomain(Integer value) {
         this.poolValues.remove(value);
     }
 

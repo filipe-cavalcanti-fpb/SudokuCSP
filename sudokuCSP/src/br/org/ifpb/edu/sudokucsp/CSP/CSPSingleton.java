@@ -6,6 +6,7 @@
 package br.org.ifpb.edu.sudokucsp.CSP;
 
 import br.org.ifpb.edu.sudokucsp.CSP.variable.Variable;
+import br.org.ifpb.edu.sudokucsp.CSP.variable.factoryMethod.ConcreteVariable;
 import br.org.ifpb.edu.sudokucsp.CSP.variable.factoryMethod.VariableConcreteCreator;
 import br.org.ifpb.edu.sudokucsp.CSP.variable.factoryMethod.VariableCreator;
 import br.org.ifpb.edu.sudokucsp.graph.Graph;
@@ -49,8 +50,16 @@ public class CSPSingleton {
     
     public void setValuesVariable(){
         for(List<Integer> subMatrix: ((GraphConcreteBuilder)this.graphBuilderReference).getSubMatrixs()){
-            Integer variableIndex = subMatrix.get(this.generateNode.nextInt(subMatrix.size()));
-            //this.variables.get(variableIndex).
+            for(int quant = 0; quant < this.generateNode.nextInt(3) + 3;quant++){
+                Integer variableIndex = subMatrix.get(this.generateNode.nextInt(subMatrix.size()));
+                List<Integer> availableValues = ((ConcreteVariable)this.variables.get(variableIndex)).getIntersect().getDomainFlyweight();
+                try {
+                    int valueGenereted = availableValues.get(this.generateNode.nextInt(availableValues.size()));
+                    this.variables.get(variableIndex).setValue(valueGenereted);
+                    this.variables.get(variableIndex).updateDomain(valueGenereted);
+                } catch (Exception e) {
+                }
+            }
         }
     }
 }

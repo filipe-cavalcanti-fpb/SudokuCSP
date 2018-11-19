@@ -39,4 +39,15 @@ public abstract class Variable {
     }
     abstract protected DomainFlyweight getIntersect();
     
+    public void updateDomain(int value){
+        for(DomainFlyweight domainItem: this.domains){
+            domainItem.removeFromDomain(value);
+        }
+    }
+    
+    @Override
+    public String toString(){
+        return ","+this.value;
+    }
+    
 }

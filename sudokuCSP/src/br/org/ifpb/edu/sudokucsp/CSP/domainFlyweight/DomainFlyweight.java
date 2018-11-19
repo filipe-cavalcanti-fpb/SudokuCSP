@@ -13,7 +13,7 @@ import java.util.List;
  * @author assert
  */
 public interface DomainFlyweight {
-    public void removeFromDomain(int value);
+    public void removeFromDomain(Integer value);
     public List<Integer> getDomainFlyweight();
     public void set(Collection<Integer> values);
 }
