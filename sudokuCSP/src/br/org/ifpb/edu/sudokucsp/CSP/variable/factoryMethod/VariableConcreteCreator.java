@@ -33,6 +33,7 @@ public class VariableConcreteCreator  extends VariableCreator{
         for (Variable varItem : this.variabablesReference) {
             varItem.setSubMatrixIndex(Graph.getIndexSubMatrix(node));
             varItem.setPoint(Graph.converter(node));
+            varItem.setNode(node);
             varItem.setDomains(this.domainFctory.getAllDomains(node));
             node++;
         }

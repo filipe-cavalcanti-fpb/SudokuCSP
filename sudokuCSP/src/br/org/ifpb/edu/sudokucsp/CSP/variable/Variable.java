@@ -17,6 +17,7 @@ public abstract class Variable {
     private List<Integer> point;
     private int value;
     protected List<DomainFlyweight> domains;
+    protected int node;
 
     public void setSubMatrixIndex(int subMatrixIndex) {
         this.subMatrixIndex = subMatrixIndex;
@@ -33,6 +34,10 @@ public abstract class Variable {
     public void setDomains(List<DomainFlyweight> domains) {
         this.domains = domains;
     }
+    
+    public void setNode(int node){
+        this.node = node;
+    }
 
     public List<DomainFlyweight> getDomains() {
         return domains;
@@ -45,9 +50,13 @@ public abstract class Variable {
         }
     }
     
+    public int getValue(){
+        return this.value;
+    }
+    
     @Override
     public String toString(){
-        return ","+this.value;
+        return "{\"node\":"+this.node+", \"value\":"+this.value+"}";
     }
     
 }

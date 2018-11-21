@@ -19,7 +19,7 @@ public class DomainConcreteFlyweight implements DomainFlyweight{
     
     public DomainConcreteFlyweight(){
         this.poolValues = new ArrayList<>();
-        for(int value = 0; value < Graph.SQRT_81; value++){
+        for(int value = 1; value <= Graph.SQRT_81; value++){
             this.poolValues.add(value);
         }
     }

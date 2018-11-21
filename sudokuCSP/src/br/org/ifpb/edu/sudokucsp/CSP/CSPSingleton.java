@@ -5,6 +5,7 @@
  */
 package br.org.ifpb.edu.sudokucsp.CSP;
 
+import br.org.ifpb.edu.sudokucsp.CSP.domainFlyweight.DomainFlyweight;
 import br.org.ifpb.edu.sudokucsp.CSP.variable.Variable;
 import br.org.ifpb.edu.sudokucsp.CSP.variable.factoryMethod.ConcreteVariable;
 import br.org.ifpb.edu.sudokucsp.CSP.variable.factoryMethod.VariableConcreteCreator;
@@ -61,5 +62,34 @@ public class CSPSingleton {
                 }
             }
         }
+    }
+    
+    public DomainFlyweight getAvailableValues(int node){
+        return ((ConcreteVariable)this.variables.get(node)).getIntersect();
+    }
+    
+    public void setValue(int node, int value){
+        this.variables.get(node).updateDomain(value);
+    }
+    public void getAvGr(int node){
+        List<Integer> allValues = this.getAllValues();
+        for(Byte variable:this.graphReference.getAdjacence(node)){
+            if(this.variables.get(variable).getValue() !=0){
+                allValues.set(this.variables.get(variable).getValue(),0);
+            }
+        }
+        Integer i = 0;
+        while (allValues.contains(i)) {            
+            allValues.remove(i);
+        }
+        System.out.println(allValues);
+    }
+    
+    public List<Integer> getAllValues(){
+        List<Integer> allValues = new ArrayList<>();
+        for(int i = 0; i <= Graph.SQRT_81;i++){
+            allValues.add(i);
+        }
+        return allValues;
     }
 }

@@ -31,6 +31,8 @@ public class SudokuCSP {
             }
             System.out.print(cs.variables.get(i));
         }
+        System.out.println("\n"+cs.variables.get(0).getDomains());
+        cs.getAvGr(0);
     }
     
 }
